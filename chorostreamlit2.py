@@ -6,6 +6,7 @@ import pandas as pd
 from streamlit_folium import folium_static
 import altair as alt
 from vega_datasets import data
+from altair import Chart
 
 st.set_page_config(layout="wide")
 geojson_url = 'https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/world-countries.json'
