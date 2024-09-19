@@ -1,28 +1,17 @@
-import streamlit as st
-import folium
 import plotly.express as px
-from openpyxl import *
 import pandas as pd
-from streamlit_folium import folium_static
-import altair as alt
-from vega_datasets import data
-from altair import Chart
-
-st.set_page_config(layout="wide")
-geojson_url = 'https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/world-countries.json'
-
-m = folium.Map(location=[20,10], zoom_start =2)
-
-st.title('IRE monde intensité')
-st.subheader('Ch. B.')
+import streamlit as st
 
 data = pd.read_excel('Panda7.xlsx')
 
-fig = px.scatter(data, x='iso_a3',
+st.set_page_config(layout="wide")
+st.title('IRE monde intensité')
+st.subheader('Ch. B.')
+
+fig = px.choropleth(data, locations='iso_a3',
             color='IntRem', hover_name='Pays',
             animation_frame = 'Annee',
             animation_group = 'Pays',
-            color_continuous_scale= px.colors.sequential.Plasma,
-            projection='natural earth')
+            color_continuous_scale= px.colors.sequential.Plasma)
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
